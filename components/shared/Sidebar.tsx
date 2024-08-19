@@ -9,6 +9,7 @@ import { usePathname } from 'next/navigation'
 import { global } from 'styled-jsx/css'
 import { Button } from '../ui/button'
 import { UserButton } from '@clerk/nextjs'
+
 const Sidebar = () => {
 
     const pathname=usePathname();
@@ -67,7 +68,7 @@ const Sidebar = () => {
                             })
                         }
                         <li className='flex-center cursor-pointer gap-2 p-4'>
-                            <UserButton afterSwitchSessionUrl='/' showName/>
+                            <UserButton showName/>
                         </li>
                     </ul>
 

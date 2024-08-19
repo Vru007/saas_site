@@ -30,7 +30,7 @@ const MobileNav = () => {
 
             <nav className='flex gap-2'>
                 <SignedIn>
-                    <UserButton afterSwitchSessionUrl='/' />
+                    <UserButton />
                     <Sheet>
                         <SheetTrigger>
                             <Image src='/assets/icons/menu.svg' alt="menu"

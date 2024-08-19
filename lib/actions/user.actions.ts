@@ -5,6 +5,7 @@ import { revalidatePath } from "next/cache";
 import User from "../database/models/user.model";
 import { connectToDatabase } from "../database/mongoose";
 import { handleError } from "../utils";
+import { NextResponse } from "next/server";
 
 
 // CREATE 
@@ -13,7 +14,10 @@ export async function createUser(user: CreateUserParams) {
     await connectToDatabase();
 
     const newUser = await User.create(user);
-
+     
+    if(!newUser){
+        return NextResponse.json({message:"User Creation Failed"},{status:500});
+    }
     return JSON.parse(JSON.stringify(newUser));
   } catch (error) {
     handleError(error);

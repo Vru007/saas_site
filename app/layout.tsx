@@ -16,30 +16,47 @@ export const metadata: Metadata = {
   description: "AI-Powered image generating platform",
 };
 
+// export default function RootLayout({
+//   children,
+// }: Readonly<{
+//   children: React.ReactNode;
+// }>) {
+  
+//   return (
+    
+//     <ClerkProvider appearance={{
+//       variables: { colorPrimary: '#624cf5' }}}>
+//     <html lang="en">
+//         <body className={cn("font-IBMPlexSans antialiased", IBMPlexSans.variable)}>
+//           <SignedOut>
+//             {/* Set routing to "hash" */}
+//             <div className="flex items-center justify-center min-h-screen">
+//               <SignIn />   
+//             </div>
+//           </SignedOut>
+//           <SignedIn>
+            
+//             {children}
+//           </SignedIn>
+//         </body>
+//       </html>
+//   </ClerkProvider>
+//   );
+// }
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  
   return (
-    
     <ClerkProvider appearance={{
       variables: { colorPrimary: '#624cf5' }}}>
-    <html lang="en">
+      <html lang="en">
         <body className={cn("font-IBMPlexSans antialiased", IBMPlexSans.variable)}>
-          <SignedOut>
-            {/* Set routing to "hash" */}
-            <div className="flex items-center justify-center min-h-screen">
-              <SignIn routing="hash" />
-            </div>
-          </SignedOut>
-          <SignedIn>
-            
-            {children}
-          </SignedIn>
+          {children}
         </body>
       </html>
-  </ClerkProvider>
+    </ClerkProvider>
   );
 }
