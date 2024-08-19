@@ -24,7 +24,8 @@ export default function RootLayout({
   
   return (
     
-    <ClerkProvider>
+    <ClerkProvider appearance={{
+      variables: { colorPrimary: '#624cf5' }}}>
     <html lang="en">
         <body className={cn("font-IBMPlexSans antialiased", IBMPlexSans.variable)}>
           <SignedOut>
@@ -34,9 +35,7 @@ export default function RootLayout({
             </div>
           </SignedOut>
           <SignedIn>
-            <header>
-              <UserButton/>
-            </header>
+            
             {children}
           </SignedIn>
         </body>
