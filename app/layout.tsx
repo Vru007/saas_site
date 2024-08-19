@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import { IBM_Plex_Sans } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-import { ClerkProvider, SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
+import { ClerkProvider, SignInButton, SignedIn, SignedOut, SignIn, UserButton } from '@clerk/nextjs'
 
 const IBMPlexSans = IBM_Plex_Sans({ 
   subsets: ["latin"],
@@ -21,20 +21,26 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  
   return (
+    
     <ClerkProvider>
     <html lang="en">
-         <body>
-         <SignedOut>
-            <SignInButton />
+        <body className={cn("font-IBMPlexSans antialiased", IBMPlexSans.variable)}>
+          <SignedOut>
+            {/* Set routing to "hash" */}
+            <div className="flex items-center justify-center min-h-screen">
+              <SignIn routing="hash" />
+            </div>
           </SignedOut>
           <SignedIn>
-            <UserButton />
+            <header>
+              <UserButton/>
+            </header>
+            {children}
           </SignedIn>
-          <main className={cn("font-IBMPlexSans antialiased",IBMPlexSans.variable)}>{children}</main>
         </body>
-     
-    </html>
-    </ClerkProvider>
+      </html>
+  </ClerkProvider>
   );
 }
