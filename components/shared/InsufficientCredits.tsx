@@ -49,7 +49,7 @@ export const InsufficientCreditsModal = () => {
           </AlertDialogTitle>
 
           <AlertDialogDescription className="p-16-regular py-3">
-            No worries, though - you can keep enjoying our services by grabbing
+            No worries, you can keep enjoying our services by grabbing
             more credits.
           </AlertDialogDescription>
         </AlertDialogHeader>

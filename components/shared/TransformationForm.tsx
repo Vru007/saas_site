@@ -1,5 +1,5 @@
 "use client"
-import React, { startTransition } from 'react'
+import React, { startTransition, useEffect } from 'react'
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import TransformedImage from './TransformedImage'
-import { aspectRatioOptions, defaultValues, transformationTypes} from '@/constants'
+import { aspectRatioOptions, creditFee, defaultValues, transformationTypes} from '@/constants'
 import { AspectRatioKey } from '@/lib/utils'
 import { CustomField } from './CustomField'
 import {
@@ -32,6 +32,7 @@ import { updateCredits } from '@/lib/actions/user.actions'
 import { getCldImageUrl } from 'next-cloudinary'
 import { addImage, updateImage } from '@/lib/actions/image.actions'
 import { useRouter } from 'next/navigation'
+import { InsufficientCreditsModal } from './InsufficientCredits'
 export const formSchema = z.object({
   title: z.string(),
   aspectRatio: z.string().optional(),
@@ -173,13 +174,19 @@ const router=useRouter();
       setnewTransformation(null);
 
       startTransition(async ()=>{
-         await updateCredits(userId,-1);
+         await updateCredits(userId,creditFee);
       });
   }
+
+  useEffect(()=>{
+    if(image && (type==='restore'||type==='removeBackground')){
+      setnewTransformation(transformationType.config)
+    }
+  },[image,transformationType.config,type]);
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-
+       {creditBalance<Math.abs(creditFee) && <InsufficientCreditsModal/>}
         <CustomField
           control={form.control}
           name="title"

@@ -21,7 +21,7 @@ const MobileNav = () => {
         <header className='header'>
             <Link href="/" className='flex items-center gap-2 md:py-2'>
                 <Image
-                    src="/assets/images/logo-text.svg"
+                    src=""
                     alt="logo"
                     width={180}
                     height={28}
@@ -49,7 +49,7 @@ const MobileNav = () => {
                                 </SheetHeader> */}
 
                             <>
-                                <Image src='/assets/images/logo-text.svg'
+                                <Image src=''
                                     alt="logo"
                                     width={152}
                                     height={23}
