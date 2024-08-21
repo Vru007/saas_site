@@ -16,6 +16,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import TransformedImage from './TransformedImage'
 import { aspectRatioOptions, defaultValues, transformationTypes} from '@/constants'
 import { AspectRatioKey } from '@/lib/utils'
 import { CustomField } from './CustomField'
@@ -27,6 +28,7 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import MediaUploader from './MediaUploader'
+import { updateCredits } from '@/lib/actions/user.actions'
 
 export const formSchema = z.object({
   title: z.string(),
@@ -61,8 +63,7 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance,c
 
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
+     
     console.log(values)
   }
 
@@ -105,7 +106,7 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance,c
       setnewTransformation(null);
 
       startTransition(async ()=>{
-         
+         await updateCredits(userId,-1);
       });
   }
   return (
@@ -201,7 +202,19 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance,c
             />
            )}
           />
+
+         <TransformedImage 
+         image={image}
+         type={type}
+         title={form.getValues().title}
+         isTransforming={isTransforming}
+         setIsTransforming={setIsTransforming}
+         transformationConfig={transformationConfig}
+         ></TransformedImage>
          </div>
+
+
+         {/* Buttons classes */}
          <div className='flex flex-col gap-4'>
 
          <button 
