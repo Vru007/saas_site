@@ -34,7 +34,7 @@ const MediaUploader = ({
                 publicId: result?.info?.public_id,
                 width: result?.info?.width,
                 height: result?.info?.height,
-                secureUrl: result?.info?.secure_url,
+                secureURL: result?.info?.secure_url,
             };
             console.log("New State:", newState);
             return newState;
@@ -85,7 +85,7 @@ const MediaUploader = ({
                 {publicId ?(
                     <>
                     
-                     Here is the image
+                     
                      <div className='cursor-pointer overflow-hidden rounded-[10px]'>
                         <CldImage 
                         width={getImageSize(type,image,"width")}
