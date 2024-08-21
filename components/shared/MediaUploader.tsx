@@ -25,9 +25,9 @@ const MediaUploader = ({
     image,publicId,type}:MediaUploaderProps) => {
     const {toast}=useToast();
 
-    console.log("MediaUploader Props:", { publicId, image, type });
+    // console.log("MediaUploader Props:", { publicId, image, type });
     const onUploadSuccessHandler=(result:any)=>{
-       console.log("result: ",result);
+    //    console.log("result: ",result);
         setImage((prevState:any)=>{
             const newState = {
                 ...prevState,
@@ -39,7 +39,7 @@ const MediaUploader = ({
             console.log("New State:", newState);
             return newState;
         })
-        console.log("result?public_id=",result?.info?.public_id);
+        // console.log("result?public_id=",result?.info?.public_id);
         //  if (typeof onValueChange === 'function') {
         onValueChange(result?.info?.public_id);
     // } else {
@@ -63,7 +63,7 @@ const MediaUploader = ({
         })
     }
 
-    console.log("public id: ",publicId);
+    // console.log("public id: ",publicId);
   return (
     <CldUploadWidget
      uploadPreset="imaginator"
@@ -81,7 +81,7 @@ const MediaUploader = ({
                 <h3 className='h3-bold text-dark-600'>
                     Original
                 </h3>
-                {`console.log("inside original: ",${publicId})`}
+                {/* {`console.log("inside original: ",${publicId})`} */}
                 {publicId ?(
                     <>
                     

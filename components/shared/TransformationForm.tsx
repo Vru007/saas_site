@@ -193,7 +193,7 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance,c
            className='flex size-full flex-col'
            render={({field})=>(
             <MediaUploader
-            onValueChange={field.change}
+            onValueChange={field.onChange}
             setImage={setImage}
             publicId={field.value}
             image={image}
